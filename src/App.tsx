@@ -36,7 +36,7 @@ export function App() {
       <main className="stage">
         <Orb listening={listening || busy} onToggle={() => setListening((l) => !l)} />
         <p className="hint" style={{ textAlign: 'center' }}>
-          {listening ? 'listening…' : <>Say <b>“Hey Jarvis”</b> or type below · English · ಕನ್ನಡ</>}
+          {listening ? 'listening…' : <>Say <b>“Chanakya”</b> or type below · English · ಕನ್ನಡ</>}
         </p>
         {turns.length === 0 && (
           <div className="samples">

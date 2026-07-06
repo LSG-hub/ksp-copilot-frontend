@@ -19,7 +19,7 @@ cinematic experience is also zero-hallucination and fully auditable.
   the live query trace** (the ops-room tell).
 - **Layout:** INLINE chat is the hero (full-width thread, ~940px). Blocks render inside the AI's answer.
   A voice **orb** sits at the top as the presence. No separate dashboard/canvas — chat is never sidelined.
-- **Voice:** a living orb (breathing glow + gold KSP ring + reactive waveform), **"Hey Jarvis" wake-word**.
+- **Voice:** a living orb (breathing glow + gold KSP ring + reactive waveform), **"Chanakya" wake-word**.
   Ship **tap-to-talk (Web Speech API)** first; true wake-word (Porcupine-style) later. Kannada STT/TTS/
   translate runs on **Catalyst Zia** server-side; browser only captures audio. Bilingual EN/ಕನ್ನಡ.
 - **Map:** real Karnataka district GeoJSON (30 districts) rendered as SVG/D3 — self-contained, no external
@@ -83,7 +83,7 @@ Grounding rule holds: **block data = tool output**, never LLM-fabricated. Approa
 - Libraries (Slate hosting allows CDNs/npm bundling, unlike Artifacts): a graph lib (react-force-graph /
   cytoscape / d3-force), D3 for the KA map, a chart lib (Recharts/Chart.js). Bundle the KA GeoJSON.
 - Components:
-  - `<Console>` shell — top command bar (crest, wordmark, "Hey Jarvis", Live), thread, composer.
+  - `<Console>` shell — top command bar (crest, wordmark, "Chanakya", Live), thread, composer.
   - `<Orb>` — CSS/Canvas animated voice orb; states idle/listening; waveform; wake-word hook.
   - `<Thread>` / `<Turn>` — inline chat; user + AI turns.
   - `<BlockRenderer>` — switch on `block.type` → component below.

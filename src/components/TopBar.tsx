@@ -12,7 +12,12 @@ export function TopBar() {
         <div className="n">Investigator Copilot</div>
       </div>
       <div className="spacer" />
-      <span className="pill wake">“Hey Jarvis”</span>
+      <span className="pill wake" title="Voice wake-word: say &quot;Chanakya&quot;">
+        <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden="true">
+          <rect x="9" y="3" width="6" height="11" rx="3" /><path d="M6 11a6 6 0 0 0 12 0M12 17v4" />
+        </svg>
+        Chanakya
+      </span>
       <span className="pill"><span className="dotlive" />Live</span>
       <div className="who" aria-hidden="true">SG</div>
     </header>
