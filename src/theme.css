@@ -28,7 +28,7 @@ button{font-family:inherit}
 @keyframes beat{0%{box-shadow:0 0 0 0 rgba(67,185,138,.5)}70%{box-shadow:0 0 0 7px rgba(67,185,138,0)}100%{box-shadow:0 0 0 0 rgba(67,185,138,0)}}
 .who{width:30px;height:30px;border-radius:50%;background:var(--raised);border:1px solid var(--line2);display:grid;place-items:center;font-size:12px;color:var(--sub)}
 
-.stage{max-width:940px;margin:0 auto;padding:24px 20px 40px}
+.stage{max-width:940px;margin:0 auto;padding:24px 20px 120px}
 .orbwrap{display:flex;flex-direction:column;align-items:center;gap:14px;padding:10px 0 22px}
 .orb{width:118px;height:118px;border-radius:50%;position:relative;cursor:pointer;
   background:radial-gradient(circle at 36% 30%,#9fecfb 0%,#42bce0 38%,#136a8c 72%,#0a3145 100%);
@@ -48,7 +48,8 @@ button{font-family:inherit}
 .hint b{color:var(--cyan);font-weight:400}
 
 .thread{display:flex;flex-direction:column;gap:22px}
-.turn.u{align-self:flex-end;max-width:82%;background:var(--raised);border:1px solid var(--line2);border-radius:14px 14px 4px 14px;padding:11px 15px;font-size:15px}
+.turn.u{margin-left:auto;width:fit-content;max-width:82%;background:var(--raised);border:1px solid var(--line2);border-radius:14px 14px 4px 14px;padding:11px 15px;font-size:15px}
+.turn.u .tag{text-align:right}
 .turn.u .tag{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
 .say{display:flex;gap:11px;align-items:flex-start;font-size:15px;line-height:1.6}
 .mini{width:26px;height:26px;border-radius:50%;flex:none;margin-top:2px;background:radial-gradient(circle at 38% 32%,#9fecfb,#2ba7cc 55%,#0e4a63);box-shadow:0 0 12px rgba(72,199,223,.5)}
@@ -131,7 +132,7 @@ button{font-family:inherit}
 .audit{display:flex;flex-wrap:wrap;gap:7px;padding:11px 15px;border-top:1px solid var(--line)}
 .fir{font-family:var(--mono);font-size:10.5px;color:var(--sub);background:var(--panel2);border:1px solid var(--line);border-radius:6px;padding:4px 8px}
 
-.composer{position:sticky;bottom:0;display:flex;gap:10px;align-items:center;max-width:940px;margin:0 auto;padding:14px 20px;background:linear-gradient(transparent,var(--ink) 34%)}
+.composer{position:fixed;left:0;right:0;bottom:0;z-index:20;display:flex;gap:10px;align-items:center;max-width:940px;margin:0 auto;padding:16px 20px 20px;background:linear-gradient(transparent,var(--ink) 30%)}
 .composer input{flex:1;border:1px solid var(--line2);border-radius:12px;padding:13px 15px;color:var(--text);font-size:14px;background:var(--panel);outline:none}
 .composer input:focus{border-color:var(--cyan);box-shadow:0 0 0 3px var(--cyansoft)}
 .composer .btn{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;border:1px solid var(--line2);color:var(--sub);background:transparent;cursor:pointer}
