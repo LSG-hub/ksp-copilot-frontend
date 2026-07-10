@@ -4,6 +4,9 @@ import { Orb } from './components/Orb';
 import { Composer } from './components/Composer';
 import { BlockRenderer } from './components/BlockRenderer';
 import { AuditTrace } from './components/AuditTrace';
+import { CaseModal } from './components/CaseModal';
+import { CaseContext } from './lib/caseContext';
+import { useTypewriter } from './lib/useTypewriter';
 import { askCopilot } from './lib/api';
 import type { Briefing } from './lib/types';
 
@@ -19,6 +22,7 @@ export function App() {
   const [turns, setTurns] = useState<Turn[]>([]);
   const [busy, setBusy] = useState(false);
   const [listening, setListening] = useState(false);
+  const [caseNo, setCaseNo] = useState<string | null>(null);
 
   async function ask(q: string) {
     if (!q.trim() || busy) return;
@@ -31,7 +35,7 @@ export function App() {
   }
 
   return (
-    <>
+    <CaseContext.Provider value={setCaseNo}>
       <TopBar />
       <main className="stage">
         <Orb listening={listening || busy} onToggle={() => setListening((l) => !l)} />
@@ -54,21 +58,28 @@ export function App() {
         <div className="foot">Synthetic, NCRB-grounded data · KSP Datathon 2026</div>
       </main>
       <Composer busy={busy} onSend={ask} onMic={() => setListening((l) => !l)} />
-    </>
+      {caseNo && <CaseModal crimeNo={caseNo} onClose={() => setCaseNo(null)} />}
+    </CaseContext.Provider>
   );
 }
 
 function AiTurn({ b }: { b: Briefing }) {
+  const { shown, done } = useTypewriter(b.narrative || '');
   return (
     <div>
-      <div className="say"><span className="mini" aria-hidden="true" /><div><MarkdownLite text={b.narrative} /></div></div>
-      {b.error && <div className="offline">offline demo — showing sample briefing ({b.error})</div>}
-      <div className="blocks">
-        {(b.blocks || []).map((bl, i) => <BlockRenderer key={i} block={bl} />)}
-        {(b.reasoning_trace?.length || b.audit) && (
-          <AuditTrace reasoning={b.reasoning_trace} audit={b.audit} grounded={b.grounded} />
-        )}
+      <div className="say">
+        <span className="mini" aria-hidden="true" />
+        <div><MarkdownLite text={shown} />{!done && <span className="typing-cur" />}</div>
       </div>
+      {b.error && <div className="offline">offline demo — showing sample briefing ({b.error})</div>}
+      {done && (
+        <div className="blocks">
+          {(b.blocks || []).map((bl, i) => <BlockRenderer key={i} block={bl} />)}
+          {(b.reasoning_trace?.length || b.audit) && (
+            <AuditTrace reasoning={b.reasoning_trace} audit={b.audit} grounded={b.grounded} />
+          )}
+        </div>
+      )}
     </div>
   );
 }

@@ -5,6 +5,17 @@ import { SAMPLE_BRIEFING } from './fixtures';
 // In prod (Slate, same project) the function is reachable at the same origin.
 const QUERY_URL = '/server/api/query';
 
+// Fast, direct case lookup (no LLM) — opens a full FIR dossier by CrimeNo.
+export async function fetchCase(crimeNo: string): Promise<{ found: boolean; block: any }> {
+  const res = await fetch('/server/api/case', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ crime_no: crimeNo }),
+  });
+  if (!res.ok) throw new Error(`case ${res.status}`);
+  return res.json();
+}
+
 export async function askCopilot(question: string): Promise<Briefing> {
   const ctrl = new AbortController();
   const t = setTimeout(() => ctrl.abort(), 120_000);
